@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "crypto-js": "^4.1.1",
@@ -9,7 +10,9 @@
     "express-ejs-layouts": "^2.5.1",
     "finnhub": "^1.2.11",
     "pg": "^8.7.3",
-    "sequelize": "^6.17.0"
+    "scramjet": "^4.36.6",
+    "sequelize": "^6.17.0",
+    "yahoo-stock-prices": "^1.1.0"
   },
   "name": "project-2",
   "description": "",
