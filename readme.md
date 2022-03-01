@@ -25,5 +25,10 @@ $*****  US STOCK EXCHANGE RESEARCH AND FAVORITES  *****$
 - [ ]Node.JS
 - [ ]CSS/Bootstrap
 
+TO USE THIS PROGRAM RUN:
+nmp install
+npm i sequelize pg
+
+
 ![add erd](./ERD.drawio.png)
 

@@ -5,6 +5,8 @@ require('dotenv').config() // allows us to access env vars
 const cookieParser = require('cookie-parser')
 const cryptoJS = require('crypto-js')
 const db = require('./models/index.js')
+const axios = require('axios')
+
 
 // MIDDLEWARE
 app.set('view engine', 'ejs') // set the view engine to ejs
@@ -35,10 +37,37 @@ app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
 
+'use strict';
+const request = require('request');
+const url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=${process.env.Alphavantage_API_KEY}';
+
+request.get({
+    url: url,
+    json: true,
+    headers: {'User-Agent': 'request'}
+    }, (err, res, data) => {
+    if (err) {
+        console.log('Error:', err);
+    } else if (res.statusCode !== 200) {
+        console.log('Status:', res.statusCode);
+    } else {
+        console.log(data);
+    }
+});
+// app.get('/results', async (req, res) => {
+//     try {
+//         // const response = await axios.get(`http://www.omdbapi.com/?s=${req.query.movieSearch}&apikey=${process.env.OMDB_API_KEY}`)
+//         const respone = await axios.get('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=BXXIVDUR8Q2XYJD8')
+//         // res.render('results.ejs', { movies: response.data.Search })
+//         res.render('results.ejs', { stocks: response.data.Search })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
 
 
 // check for an env PORT, otherwise use 8000
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
-    console.log(`Auth app running on ${PORT}`)
+    console.log(`You are listening to PORT ${PORT}`)
 })

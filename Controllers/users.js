@@ -43,24 +43,24 @@ router.get('/login', (req, res)=>{
 })
 
 router.post('/login', async (req, res)=>{
-   const user = await db.user.findOne({where: {email: req.body.email}})
+    const user = await db.user.findOne({where: {email: req.body.email}})
    if(!user) { // didn't find user in the database
-       console.log('user not found!')
-       res.render('users/login.ejs', {error: 'Invalid email/password'})
+        console.log('user not found!')
+        res.render('users/login.ejs', {error: 'Invalid email/password'})
    } else if(!bcrypt.compareSync(req.body.password, user.password)) { // found user but password was wrong 
-       console.log('Incorrect Password')
-       res.render('users/login.ejs', {error: 'Invalid email/password'})
-   } else {
-       console.log('logging in the user!')
+        console.log('Incorrect Password')
+        res.render('users/login.ejs', {error: 'Invalid email/password'})
+    } else {
+        console.log('logging in the user!')
        // encrypt the user id via AES
-       const encryptedUserId = cryptojs.AES.encrypt(user.id.toString(), process.env.SECRET)
-       const encryptedUserIdString = encryptedUserId.toString()
-       console.log(encryptedUserIdString)
+        const encryptedUserId = cryptojs.AES.encrypt(user.id.toString(), process.env.SECRET)
+        const encryptedUserIdString = encryptedUserId.toString()
+        console.log(encryptedUserIdString)
        // store the encrypted id in the cookie of the res obj
-       res.cookie('userId', encryptedUserIdString)
+        res.cookie('userId', encryptedUserIdString)
        // redirect back to home page
-       res.redirect('/')
-   }
+        res.redirect('/')
+    }
 })
 
 router.get('/logout', (req, res)=>{

@@ -1,0 +1,1 @@
+sequelize model:create --name favorite --attributes company_name:string,
