@@ -5,7 +5,6 @@ require('dotenv').config() // allows us to access env vars
 const cookieParser = require('cookie-parser')
 const cryptoJS = require('crypto-js')
 const db = require('./models/index.js')
-const axios = require('axios')
 
 // MIDDLEWARE
 app.set('view engine', 'ejs') // set the view engine to ejs
@@ -36,26 +35,27 @@ app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
 
-
 'use strict';
-const request = require('request');
-const url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=${process.env.Alphavantage_API_KEY}';
+const { default: axios } = require('axios');
+var request = require('axios');
+const router = require('./controllers/users');
+require('dotenv').config()
 
-request.get({
-    url: url,
-    json: true,
-    headers: {'User-Agent': 'request'}
-    }, (err, res, data) => {
-    if (err) {
-        console.log('Error:', err);
-    } else if (res.statusCode !== 200) {
-        console.log('Status:', res.statusCode);
-    } else {
-        console.log("5",data["Global Quote"])
+
+// replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
+var url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=${process.env.Alphavantage_API_KEY}`;
+const options = {
+    headers: {
+      'User-Agent': 'request',
+      'Accept': 'application/json'
     }
-});
+  } 
 
-
+axios.get(url, options)
+.then(response => {
+    // console.log(response.data)
+    console.log("bracket",response.data["Global Quote"])
+})
 
 
 // check for an env PORT, otherwise use 3001

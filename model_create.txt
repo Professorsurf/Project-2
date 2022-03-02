@@ -3,4 +3,5 @@ sequelize model:create --name stock --attributes symbol:string,open:integer,high
 
 sequelize model:create --name fave --attributes userId:integer,stockId:integer
 
+
 sequelize model:create --name userNotes --attributes stockId:integer,notesId:integer
