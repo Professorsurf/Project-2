@@ -1,1 +1,6 @@
-sequelize model:create --name favorite --attributes company_name:string,
+sequelize model:create --name stock --attributes symbol:string,open:integer,high:integer,low:integer,price:integer,volume:integer,latest_trading_day:integer,previous_close:integer,change:integer,change_percent:integer
+
+
+sequelize model:create --name fave --attributes userId:integer,stockId:integer
+
+sequelize model:create --name userNotes --attributes stockId:integer,notesId:integer

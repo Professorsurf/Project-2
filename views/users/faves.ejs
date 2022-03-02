@@ -1,0 +1,11 @@
+<h2><%=  globalquote.symbol%></h2>
+
+
+<img src="<%= movie.Poster %>" />
+
+<form method="POST" action="/faves">
+  <input hidden name="symbol" value="<%= globalquote.symbol %>" />
+  <input hidden name="" value="<%= movie.imdbID %>" />
+
+  <input type="submit" value="fave this movie " />
+</form>
