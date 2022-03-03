@@ -37,28 +37,28 @@ app.get('/', (req, res)=>{
 
 'use strict';
 const { default: axios } = require('axios');
-var request = require('axios');
+const request = require('axios');
 const router = require('./controllers/users');
+const { response } = require('express')
 require('dotenv').config()
 
-
-// replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
-var url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=${process.env.Alphavantage_API_KEY}`;
-const options = {
+// router.get('/users/profile', (req, res) => {
+//     console.log(req.query.stockSearch)
+    let url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=GOOG&apikey=${process.env.Alphavantage_API_KEY}`;
+    const options = {
     headers: {
-      'User-Agent': 'request',
-      'Accept': 'application/json'
-    }
-  } 
-
-axios.get(url, options)
-.then(response => {
+        'User-Agent': 'request',
+        'Accept': 'application/json'
+        }
+    } 
+    axios.get(url, options)
+    .then(response => {
     // console.log(response.data)
     console.log("bracket",response.data["Global Quote"])
-})
+    // res.render('users/results.ejs', {stockSearch: response.data["Global Quote"]})
+    })
+// })
 
-
-// check for an env PORT, otherwise use 3001
 const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
     console.log(`You are listening to PORT ${PORT}`)
