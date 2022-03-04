@@ -1,0 +1,15 @@
+
+<h2>Welcome to your Market Watch search</h2>
+<h5>You are logged in as: <%= user.Username %> </h5>
+<br>
+<br>
+<p>Search for a publicly traded company by entering the ticker symbol below:</p>
+
+<form method="GET" action="/users/results"> 
+    <label for="search"></label>
+    <input type="text"  id="search"  minlength="1" maxlength="5" name="stockSearch"/>
+    <input type="submit" />
+</form>
+
+
+

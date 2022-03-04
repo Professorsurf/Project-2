@@ -1,1 +1,18 @@
-<h2> Display of search results:</h2>
+<h2>YOUR FIRST SEARCH RESULT:</h2>
+
+        <div>
+            <p> symbol <%= stocks['01. symbol'] %> </p>
+            <p> high <%= stocks['03. high'] %></p>
+            <p> low <%= stocks['04. low'] %></p>
+            <p> volume <%= stocks['06. volume'] %></p>
+            </div>
+
+<form  action="/users/results" method="POST" >
+    <input hidden name="symbol" type="text" value="<%= stocks['01. symbol'] %>" />
+    <input hidden name="high" type="text" value="<%= stocks['03. high'] %>" />
+    <input hidden name="low" type="text" value="<%= stocks['04. low']%>" />
+    <input hidden name="volume" type="text" value="<%= stocks['06. volume']%>" />
+    <button type="submit">save stock to favorites</button>
+</form>
+
+
