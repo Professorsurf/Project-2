@@ -13,6 +13,7 @@
     "pg": "^8.7.3",
     "scramjet": "^4.36.6",
     "sequelize": "^6.17.0",
+    "sequelize-cli": "^6.4.1",
     "yahoo-stock-prices": "^1.1.0"
   },
   "name": "project-2",
