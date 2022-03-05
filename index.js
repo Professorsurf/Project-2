@@ -58,12 +58,49 @@ app.post('/users/results', async (req, res) => {
     res.redirect('/users/search')
 })
 
+
 // newUser.userName = req.body.userName
+
+// FAVES
+
+// app.get('/users/faves', async (req, res) => {
+//     res.send('show me some faves')
+//     // try {
+//     //     const allFaves = await db.fave.findAll()
+//     //     res.json(allFaves)
+//     // } catch (err) {
+//     //     console.log(err)
+//     // }
+// })
+
+// app.post('/users/faves', async (req, res) => {
+//     // console.log(req.body)
+//     // db.fave.create
+//     try {
+//         await db.fave.create({
+//             stocks: req.body.allFaves,
+//         })
+//         res.redirect('/users/faves')
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
+
+router.delete("/:stock_id/comments", async (req,res ) => {
+    try {
+      const removeComment = await db.comment.findOne({
+        where: { 
+            id: req.params.id
+        }
+      });
+      await removeComment.destroy();
+      res.redirect("/users/result/Comment.ejs");
+    } catch (err) {
+      console.log(err);
+    }
+  })
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
     console.log(`You are listening to PORT ${PORT}`)
 })
-
-// adding some text to see if I can update git to main branch
-// adding another change since it said there was an error and to resolve conflict

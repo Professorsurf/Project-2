@@ -12,31 +12,31 @@ module.exports = {
         type: Sequelize.STRING
       },
       open: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       high: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       low: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       volume: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       latest_trading_day: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       previous_close: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       change: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       change_percent: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,

@@ -10,20 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.stock.belongsToMany(models.user, {through: "fave"})
+
     }
   }
   stock.init({
     symbol: DataTypes.STRING,
-    open: DataTypes.INTEGER,
-    high: DataTypes.INTEGER,
-    low: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
-    volume: DataTypes.INTEGER,
-    latest_trading_day: DataTypes.INTEGER,
-    previous_close: DataTypes.INTEGER,
-    change: DataTypes.INTEGER,
-    change_percent: DataTypes.INTEGER
+    open: DataTypes.FLOAT,
+    high: DataTypes.FLOAT,
+    low: DataTypes.FLOAT,
+    price: DataTypes.FLOAT,
+    volume: DataTypes.FLOAT,
+    latest_trading_day: DataTypes.FLOAT,
+    previous_close: DataTypes.FLOAT,
+    change: DataTypes.FLOAT,
+    change_percent: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'stock',
