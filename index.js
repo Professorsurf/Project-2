@@ -49,44 +49,21 @@ app.get('/users/results', (req, res) => {
     })
 })
 
-app.post('/users/results', (req, res) => {
-    db.user.findOne ({
-        where: {id: res.locals.user.id}
+app.post('/users/results', async (req, res) => {
+    const [stock, created] = await db.stock.findOrCreate({
+        where: { symbol:req.body.symbol},
+        defaults: { high:req.body.high, low:req.body.low, volume:req.body.volume}
     })
-    .then(founduser => {
-        founduser.createStock({
-            symbol:req.body.symbol, high:req.body.high, low:req.body.low, volume:req.body.volume
-        })
-    })
+        res.locals.user.addStock(stock)
     res.redirect('/users/search')
 })
 
-
-// FAVES
-// app.get('/users/faves', async (req, res) => {
-//     // res.send('show me some faves')
-//     try {
-//         const allFaves = await db.fave.findAll()
-//         res.json(allFaves)
-//     } catch (err) {
-//         console.log(err)
-//     }
-// })
-
-// app.post('/users/faves', async (req, res) => {
-//     // console.log(req.body)
-//     // db.fave.create
-//     try {
-//         await db.fave.create({
-//             stocks: req.body.allFaves,
-//         })
-//         res.redirect('/faves')
-//     } catch (error) {
-//         console.log(error)
-//     }
-// })
+// newUser.userName = req.body.userName
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
     console.log(`You are listening to PORT ${PORT}`)
 })
+
+// adding some text to see if I can update git to main branch
+// adding another change since it said there was an error and to resolve conflict
