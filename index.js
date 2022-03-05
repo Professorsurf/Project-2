@@ -86,19 +86,7 @@ app.post('/users/results', async (req, res) => {
 //     }
 // })
 
-router.delete("/:stock_id/comments", async (req,res ) => {
-    try {
-      const removeComment = await db.comment.findOne({
-        where: { 
-            id: req.params.id
-        }
-      });
-      await removeComment.destroy();
-      res.redirect("/users/result/Comment.ejs");
-    } catch (err) {
-      console.log(err);
-    }
-  })
+
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
