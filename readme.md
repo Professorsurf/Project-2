@@ -1,7 +1,7 @@
 # PROJECT-2
 $*****  US STOCK EXCHANGE RESEARCH AND FAVORITES  *****$
 
-*** This is a fullstack application that will allow a user to research over 4,000 stocks from the US stock market and save favorites to their profile.
+*** This is a fullstack application that will allow a user to research over 4,000 stocks from the US stock market and save favorites to their profile where they can make comments about them.
 *** The API being used is through Alphavantage.co
 
 
@@ -25,10 +25,10 @@ $*****  US STOCK EXCHANGE RESEARCH AND FAVORITES  *****$
 - [ ]Node.JS
 - [ ]CSS/Bootstrap
 
-TO USE THIS PROGRAM RUN:
+*** TO USE THIS PROGRAM RUN:***
 nmp install
 npm i sequelize pg
-
+obtain a free API Key from Alphavantage.com and save it in the .env file
 
 ![add erd](./ERD.drawio.png)
 

@@ -27,7 +27,7 @@ app.use(async (req, res, next)=>{
 // CONTROLLERS
 app.use('/users', require('./controllers/users.js'))
 
-// ROUTES SEARCH/FAVE/COMMENTS
+// ROUTES SEARCH/UserStocks/COMMENTS
 app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
@@ -52,7 +52,7 @@ app.get('/users/results', (req, res) => {
     })
 })
 
-// POST faves 
+// POST UserStocks 
 app.post('/users/results', async (req, res) => {
     const foundUser = await db.user.findOne({
         where: {id: res.locals.user.id}
@@ -65,7 +65,6 @@ app.post('/users/results', async (req, res) => {
         res.redirect('/users/results')
 })
 
-// app.use(methodOverride('_method'))
 
 app.post('/users/results', async (req, res) => {
     let userId = res.locals.user.id
@@ -84,7 +83,6 @@ app.post('/users/results', async (req, res) => {
     })
 })
 
-//displaying the comments [need to show the display on faves.ejs]
 app.get('/:stock_id/comments', async (req, res) => {
     try {
         const foundComment = await db.comment.findAll({
@@ -92,13 +90,46 @@ app.get('/:stock_id/comments', async (req, res) => {
                 stockId: req.params.stock_id
             }
         })
-        // console.log("This is your comment to favorite stock")
         res.render('results/stockComment.ejs', {comment: foundComment})
     } catch (error) {
         console.log(error)
     }
 })
 
+app.put("/:stock_id/comments", async (req, res) => {
+    try {
+        const foundComment = await db.comment.findOne({
+            where: {
+                id: req.params.stock_id
+            }
+        })
+        foundComment.update({
+            comment: req.body.comment
+        })
+        await foundComment.save();
+        res.redirect(`/results/stockComment.ejs`)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.delete("/:stock_id/comments", async (req,res ) => {
+    try {
+        const deleteComment = await db.comment.findOne({
+        where: { 
+            id: req.params.id
+        }
+    });
+        await deleteComment.destroy();
+        res.redirect("/results/stockComment.ejs");
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+app.get('*', (req,res)=> {
+    res.send('404 page')
+})
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{

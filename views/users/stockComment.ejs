@@ -1,7 +1,7 @@
 <h2>Comment on your favorited stock</h2>
 
 <% comment.forEach(element => { %>
-    <p>Comment: <%= fave.comment %></p>
+    <p>Comment: <%= user_stock.comment %></p>
     <p>Enter your comment here to save them</p>
     <form action="/users/results<%= fave.id %>/?_method=DELETE" method="POST">
         <input type="submit" value="DELETE" class ="remove-button">
