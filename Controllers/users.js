@@ -55,6 +55,12 @@ router.post('/login', async (req, res)=>{
        // encrypt the user id via AES
         const encryptedUserId = cryptojs.AES.encrypt(user.id.toString(), process.env.SECRET)
         const encryptedUserIdString = encryptedUserId.toString()
+
+
+        // const newUser = newUser.userName = req.body.userName
+
+
+
         console.log(encryptedUserIdString)
        // store the encrypted id in the cookie of the res obj
         res.cookie('userId', encryptedUserIdString)

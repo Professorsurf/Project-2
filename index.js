@@ -8,6 +8,7 @@ const db = require('./models')
 const axios = require('axios')
 const router = require('./controllers/users.js')
 const { all } = require('./controllers/users.js')
+// const methodOverride = require('method-override')
 
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
@@ -26,13 +27,15 @@ app.use(async (req, res, next)=>{
 // CONTROLLERS
 app.use('/users', require('./controllers/users.js'))
 
-// ROUTES
+// ROUTES SEARCH/FAVE/COMMENTS
 app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
+
 app.get('/users/search', (req, res)=>{
     res.render('users/search.ejs')
 })
+
 app.get('/users/results', (req, res) => {
     console.log(req.query.stockSearch)
     let url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${req.query.stockSearch}&apikey=${process.env.Alphavantage_API_KEY}`;
@@ -49,43 +52,52 @@ app.get('/users/results', (req, res) => {
     })
 })
 
+// POST faves 
 app.post('/users/results', async (req, res) => {
+    const foundUser = await db.user.findOne({
+        where: {id: res.locals.user.id}
+    })
     const [stock, created] = await db.stock.findOrCreate({
         where: { symbol:req.body.symbol},
         defaults: { high:req.body.high, low:req.body.low, volume:req.body.volume}
     })
-        res.locals.user.addStock(stock)
-    res.redirect('/users/search')
+        foundUser.addStock(stock)
+        res.redirect('/users/results')
 })
 
+// app.use(methodOverride('_method'))
 
-// newUser.userName = req.body.userName
+app.post('/users/results', async (req, res) => {
+    let userId = res.locals.user.id
+    let stockId = req.params.stock_id
+    // console.log(req.params)
+    await db.comment.findOrCreate({
+    where: {
+        userId: userId,
+        }
+    })
+    let newComment = req.body.comment
+        db.comment.create({
+        comment: newComment,
+        userId: userId,
+        stockId: stockId
+    })
+})
 
-// FAVES
-
-// app.get('/users/faves', async (req, res) => {
-//     res.send('show me some faves')
-//     // try {
-//     //     const allFaves = await db.fave.findAll()
-//     //     res.json(allFaves)
-//     // } catch (err) {
-//     //     console.log(err)
-//     // }
-// })
-
-// app.post('/users/faves', async (req, res) => {
-//     // console.log(req.body)
-//     // db.fave.create
-//     try {
-//         await db.fave.create({
-//             stocks: req.body.allFaves,
-//         })
-//         res.redirect('/users/faves')
-//     } catch (error) {
-//         console.log(error)
-//     }
-// })
-
+//displaying the comments [need to show the display on faves.ejs]
+app.get('/:stock_id/comments', async (req, res) => {
+    try {
+        const foundComment = await db.comment.findAll({
+            where: {
+                stockId: req.params.stock_id
+            }
+        })
+        // console.log("This is your comment to favorite stock")
+        res.render('results/stockComment.ejs', {comment: foundComment})
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 
 const PORT = process.env.PORT || 3001

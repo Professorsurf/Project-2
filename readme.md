@@ -11,7 +11,7 @@ $*****  US STOCK EXCHANGE RESEARCH AND FAVORITES  *****$
 - [ ] As a user I would like to see the ticker symbol that matches the company I am researching
 - [ ] As a user I would like to see the stocks high and low price plus daily volume for a selected stock to include the current daily and previous daily close plus the change price as a percent from previous days close
 - [ ] As a user I would like to tag a specific company or ticker so it saves it to my favorites
-- [ ] As a user I would like to add notes to my selected companies saved in my favorites
+- [ ] As a user I would like to add comments to my selected companies saved in my favorites
 
 *** STRETCH GOALS ***
 - [ ] As a user I would like to see colored prices such as green if the price is higher than the market open price or red if it is lower

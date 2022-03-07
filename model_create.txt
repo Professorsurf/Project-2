@@ -5,3 +5,5 @@ sequelize model:create --name fave --attributes userId:integer,stockId:integer
 
 
 sequelize model:create --name userNotes --attributes stockId:integer,notesId:integer
+
+sequelize model:create --name comment --attributes userId:integer,stockId:integer,comment:text

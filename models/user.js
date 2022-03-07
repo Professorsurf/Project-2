@@ -10,11 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.user.belongsToMany(models.stock, {through: "fave"})
+      models.user.belongsToMany(models.stock, {through: "user_stock"})
     }
   }
   user.init({
-    userName: DataTypes.STRING,
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+    },
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {

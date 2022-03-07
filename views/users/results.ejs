@@ -1,12 +1,10 @@
-<h2>YOUR FIRST SEARCH RESULT:</h2>
-
+<h2>HERE ARE THE DETAILS OF YOUR SEARCH</h2>
     <div>
         <p> symbol <%= stocks['01. symbol'] %> </p>
         <p> high <%= stocks['03. high'] %></p>
         <p> low <%= stocks['04. low'] %></p>
         <p> volume <%= stocks['06. volume'] %></p>
     </div>
-
 <form  action="/users/results" method="POST" >
     <input name="symbol" type="hidden" value="<%= stocks['01. symbol'] %>" />
     <input name="high" type="hidden" value="<%= stocks['03. high'] %>" />
@@ -14,6 +12,14 @@
     <input name="volume" type="hidden" value="<%= stocks['06. volume']%>" />
     <button type="submit">save stock to favorites</button>
 </form>
-
-<form href="/users/results"></form>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<form action="/users/results/<%= stocks['01. symbol'] %>" method="POST">
+    <input name="comment" type="text" placeholder="Enter your comments about this stock here" height="20px"size="50" id="comment"> 
+    <label for="comment">Add your comment to the stock</label>
+    <input type="submit">
+</form> 
