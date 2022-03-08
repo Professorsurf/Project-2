@@ -61,15 +61,22 @@ app.post('/users/results', async (req, res) => {
         where: { symbol:req.body.symbol},
         defaults: { high:req.body.high, low:req.body.low, volume:req.body.volume}
     })
-        foundUser.addStock(stock)
+    const addStock = await db.userstock.create({
+        userId: res.locals.user.id,
+        stockId: req.body.stockid,
+        symbol: req.query.symbol,
+        high: req.body.high, 
+        low: req.body.low,
+        volume: req.body.volume
+    })
+        await addStock.save()
+        foundUser.addStock.save(stock)
         res.redirect('/users/results')
 })
-
 
 app.post('/users/results', async (req, res) => {
     let userId = res.locals.user.id
     let stockId = req.params.stock_id
-    // console.log(req.params)
     await db.comment.findOrCreate({
     where: {
         userId: userId,
@@ -81,6 +88,7 @@ app.post('/users/results', async (req, res) => {
         userId: userId,
         stockId: stockId
     })
+    await newComment.save()
 })
 
 app.get('/:stock_id/comments', async (req, res) => {
@@ -107,7 +115,7 @@ app.put("/:stock_id/comments", async (req, res) => {
             comment: req.body.comment
         })
         await foundComment.save();
-        res.redirect(`/results/stockComment.ejs`)
+        res.redirect(`/results/comment.ejs`)
     } catch (error) {
         console.log(error)
     }
@@ -121,7 +129,7 @@ app.delete("/:stock_id/comments", async (req,res ) => {
         }
     });
         await deleteComment.destroy();
-        res.redirect("/results/stockComment.ejs");
+        res.redirect("/results/comment.ejs");
     } catch (err) {
         console.log(err);
     }
