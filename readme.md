@@ -20,20 +20,21 @@ This is a fullstack application that will allow a user to research publicly trad
 - path
 
 ## How to Install 
-    - Fork and clone this repository
-    - Run `npm install`
-    - Run `npm i sequelize pg`
-    - Go to https://www.alphavantage.co/support/#api-key to sign up for a free API key
-    - Create a `.env` file in the main directory
-    - Enter the API key in the `.env` after: `Alphavantage_API_KEY=`
-    - Enter `SECRET=` on second line of `.env` and type your secret password after `=`
-    - Enter `PORT=` on third line of `.env` and select a desired port.
-    - The PORT will match the last lines of code in the index.js file 
-    ***** Like this example 
-    ***** `const PORT = process.env.PORT || 3001
-    *****app.listen(PORT, ()=>{
-    *****console.log(`You are using PORT ${PORT}`)
-    *****})`
+1. Fork and clone this repository
+2. Run `npm install`
+3. Run `npm i sequelize pg`
+4. Go to ([https://www.alphavantage.co/support/#api-key]) to sign up for a free API key
+5. Create a `.env` file in the main directory
+6. Enter the API key in the `.env` after: `Alphavantage_API_KEY=`
+7. Enter `SECRET=` on second line of `.env` and type your secret password after `=`
+8. Enter `PORT=` on third line of `.env` and select a desired port.
+9. The PORT will match the last lines of code in the index.js file 
+- - Here is the main index.js file for reference: 
+    ```
+    const PORT = process.env.PORT || 3001
+    app.listen(PORT, ()=>{
+    console.log(`You are using PORT ${PORT}`)
+    })```
 
 
 ## User Stories
