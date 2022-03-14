@@ -34,8 +34,10 @@ This is a fullstack application that will allow a user to research publicly trad
     const PORT = process.env.PORT || 3001
     app.listen(PORT, ()=>{
     console.log(`You are using PORT ${PORT}`)
-    })```
+    })
+    ```
 
+## Follow the link to the live version: [(https://live-market-watch.herokuapp.com/])
 
 ## User Stories
 - [ ] As a user I would like to enter a company name I want to research
@@ -54,3 +56,6 @@ This is a fullstack application that will allow a user to research publicly trad
 ![add erd](./ERD.drawio.png)
 
 ## Resources
+- Alphavantage.co
+- bootstrap
+- Googleapis
