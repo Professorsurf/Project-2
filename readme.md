@@ -4,20 +4,20 @@
 
 This is a fullstack application that will allow a user to research publicly traded stocks on the US stock market. The user can save favorite stocks they want to track to their profile. Once saved comments can be added to individual stocks.
 
-##Technical Dependencies
-- [ ]axios
-- [ ]css/bootstrap
-- [ ]cookie-parser
-- [ ]crypto-js
-- [ ]dot.env
-- [ ]express
-- [ ]express-ejs-layouts
-- [ ]fs
-- [ ]postgres
-- [ ]./models
-- [ ]node.JS
-- [ ]sequelize
-- [ ]path
+## Technical Dependencies
+- axios
+- css/bootstrap
+- cookie-parser
+- crypto-js
+- dot.env
+- express
+- express-ejs-layouts
+- fs
+- postgres
+- ./models
+- node.JS
+- sequelize
+- path
 
 ## How to Install 
     - Fork and clone this repository
