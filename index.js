@@ -4,7 +4,7 @@ const ejsLayouts = require('express-ejs-layouts')
 require('dotenv').config()
 const cookieParser = require('cookie-parser')
 const cryptoJS = require('crypto-js')
-const db = require('./models')
+const db = require('./models')  
 const axios = require('axios')
 const router = require('./controllers/users.js')
 const { all } = require('./controllers/users.js')
@@ -141,5 +141,5 @@ app.get('*', (req,res)=> {
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
-    console.log(`You are listening to PORT ${PORT}`)
+    console.log(`You are using PORT ${PORT}`)
 })
